@@ -68,29 +68,59 @@ void insertPosition(Node *&head, int pos, int d) {
 }
 
 
-void deletePosition1(Node* &head,int pos){
+// void deletePosition1(Node* &head,int pos){
 
-    Node* curr = head;
+//     Node* curr = head;
+//     if(pos == 1){
+//         head = head -> next;
+//         delete curr;
+//         // return;
+//     }
+
+//     int i=1;
+//     while(i< pos - 1 && curr -> next != NULL){
+//         curr = curr -> next;
+//         i++;
+//     }
+
+//     Node* temp = curr -> next;
+
+//     if(curr -> next == NULL){
+//         return;
+//     }
+
+//     curr -> next = temp -> next;
+//     delete temp;
+
+// }
+
+
+void deletePosition2(Node* &head,int pos){
+
+    Node *curr = head;
     if(pos == 1){
         head = head -> next;
         delete curr;
-        // return;
+        return;
+
     }
 
-    int i=1;
-    while(i< pos - 1 && curr -> next != NULL){
+    int i = 1;
+
+    Node *prev;
+    while(i < pos && curr -> next != NULL){
+        prev = curr;
         curr = curr -> next;
         i++;
     }
-
-    Node* temp = curr -> next;
 
     if(curr -> next == NULL){
         return;
     }
 
-    curr -> next = temp -> next;
-    delete temp;
+    prev -> next = curr -> next;
+    delete curr;
+
 
 }
 
@@ -116,7 +146,7 @@ int main() {
     int p;
     cout<<"Enter the position to delete: ";
     cin >> p;
-    deletePosition1(head,p);
+    deletePosition2(head,p);
     
     display(head);
     return 0;
