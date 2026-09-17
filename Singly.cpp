@@ -68,31 +68,31 @@ void insertPosition(Node *&head, int pos, int d) {
 }
 
 
-// void deletePosition1(Node* &head,int pos){
+void deletePosition1(Node* &head,int pos){
 
-//     Node* curr = head;
-//     if(pos == 1){
-//         head = head -> next;
-//         delete curr;
-//         // return;
-//     }
+    Node* curr = head;
+    if(pos == 1){
+        head = head -> next;
+        delete curr;
+        // return;
+    }
 
-//     int i=1;
-//     while(i< pos - 1 && curr -> next != NULL){
-//         curr = curr -> next;
-//         i++;
-//     }
+    int i=1;
+    while(i< pos - 1 && curr -> next != NULL){
+        curr = curr -> next;
+        i++;
+    }
 
-//     Node* temp = curr -> next;
+    Node* temp = curr -> next;
 
-//     if(curr -> next == NULL){
-//         return;
-//     }
+    if(curr -> next == NULL){
+        return;
+    }
 
-//     curr -> next = temp -> next;
-//     delete temp;
+    curr -> next = temp -> next;
+    delete temp;
 
-// }
+}
 
 
 void deletePosition2(Node* &head,int pos){
@@ -146,9 +146,19 @@ int main() {
     int p;
     cout<<"Enter the position to delete: ";
     cin >> p;
-    deletePosition2(head,p);
+
+    int dpos;
+    cout<<"Enter method to delete: 1 for method 1, 2 for method 2: ";
+    cin >> dpos;
+    if(dpos == 1)
+        deletePosition1(head,p);
+    else if(dpos == 2)
+        deletePosition2(head,p);
     
     display(head);
+
+    cout<<"The head is: "<<head->data<<endl;
+    cout<<"The tail is: "<<tail->data<<endl;
     return 0;
 
 }
